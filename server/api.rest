@@ -1,10 +1,19 @@
 ###
 
-GET http://localhost:3000/
+GET http://localhost:3000/5f7e247ac85d8a302cbe8528
 
 ###
 
 POST http://localhost:3000/
+Content-Type: application/json
+
+{
+    "nombre": "Tareas de la facultad",
+    "descripcion": "Revisar y realizar tareas de la facultad",
+    "importancia": "Alta",
+    "completada": false
+
+}
 
 ###
 
@@ -12,8 +21,17 @@ GET http://localhost:3000/
 
 ###
 
-PUT http://localhost:3000/
+PUT http://localhost:3000/5f7e247ac85d8a302cbe8528
+Content-Type: application/json
+
+{
+    "nombre": "Tareas de la facultad",
+    "descripcion": "Revisar y terminar tareas de la facultad",
+    "importancia": "Regular",
+    "completada": false
+
+}
 
 ###
 
-DELETE http://localhost:3000/
+DELETE http://localhost:3000/5f7e251c941f11359c39e19d

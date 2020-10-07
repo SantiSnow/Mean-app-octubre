@@ -3,21 +3,33 @@ const tareas = {
 
 };
 
+const Tarea = require('../models/Tareas');
 
-tareas.getTarea = (req, res) => {
-    res.send('getTarea');
+tareas.getTarea = async (req, res) => {
+    const tarea = await Tarea.findOne({_id: req.params.id});
+
+    res.json(tarea);
 };
-tareas.getTareas = (req, res) => {
-    res.send('getTareas');
+tareas.getTareas = async (req, res) => {
+    const tareas = await Tarea.find();
+
+    res.json(tareas);
 };
-tareas.setTarea = (req, res) => {
-    res.send('setTareas');
+tareas.setTarea = async (req, res) => {
+    const tarea = new Tarea(req.body);
+    await tarea.save();
+    res.send("Tarea creado");
 };
-tareas.updateTareas = (req, res) => {
-    res.send('updateTareas');
+tareas.updateTareas = async (req, res) => {
+    
+    const tarea = await Tarea.findByIdAndUpdate(req.params.id, req.body);
+
+    res.json({ Status: "Actualizada"});
 };
-tareas.deleteTareas = (req, res) => {
-    res.send('deleteTareas');
+tareas.deleteTareas = async (req, res) => {
+    const tarea = await Tarea.findByIdAndDelete({_id: req.params.id});
+
+    res.json({ Status: "Eliminado"});
 };
 
 module.exports = tareas;
