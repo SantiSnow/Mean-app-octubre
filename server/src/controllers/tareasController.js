@@ -18,7 +18,7 @@ tareas.getTareas = async (req, res) => {
 tareas.setTarea = async (req, res) => {
     const tarea = new Tarea(req.body);
     await tarea.save();
-    res.send("Tarea creado");
+    res.json({ Status: "Creada"});
 };
 tareas.updateTareas = async (req, res) => {
     

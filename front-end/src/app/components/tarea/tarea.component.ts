@@ -17,16 +17,14 @@ export class TareaComponent implements OnInit {
   }
 
   getTareas(){
-    console.log(
-      this.tService.getTareas().subscribe(
-        res => {
-          this.tService.tareasArray = res;
-        },
-        err => {
-          console.log(err);
-        }
-      )
-    );
+    this.tService.getTareas().subscribe(
+      res => {
+        this.tService.tareasArray = res;
+      },
+      err => {
+        console.log(err);
+      }
+    )
   }
 
   addTarea(form: NgForm){
@@ -36,9 +34,22 @@ export class TareaComponent implements OnInit {
         form.reset();
       },
       err => {
-        console.log(err)
+        console.log(err);
       }
     )
+  }
+
+  deleteTarea(id: string){
+    if(("¿Desea eliminar la tarea?")){
+      this.tService.deleteTarea(id).subscribe(
+        (res)=>{
+          this.getTareas();
+        },
+        (err)=>{
+          console.log(err);
+        }
+      );
+    }
   }
 
 }

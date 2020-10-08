@@ -26,7 +26,7 @@ export class TareasService {
     return this.http.post(this.url, tarea);
   }
 
-  
-
-
+  deleteTarea(id: string){
+    return this.http.delete(this.url + id);
+  }
 }
