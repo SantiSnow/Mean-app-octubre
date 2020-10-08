@@ -26,6 +26,10 @@ export class TareasService {
     return this.http.post(this.url, tarea);
   }
 
+  updateTarea(tarea: Tarea){
+    return this.http.put(this.url + tarea._id, tarea);
+  }
+
   deleteTarea(id: string){
     return this.http.delete(this.url + id);
   }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Tarea } from 'src/app/models/tarea';
 import { TareasService } from '../../services/tareas.service';
 
 
@@ -16,6 +17,10 @@ export class TareaComponent implements OnInit {
     this.getTareas();
   }
 
+  resetForm(form: NgForm){
+    form.reset();
+  }
+
   getTareas(){
     this.tService.getTareas().subscribe(
       res => {
@@ -28,15 +33,28 @@ export class TareaComponent implements OnInit {
   }
 
   addTarea(form: NgForm){
-    this.tService.addTarea(form.value).subscribe(
-      res => {
-        this.getTareas();
-        form.reset();
-      },
-      err => {
-        console.log(err);
-      }
-    )
+    if(form.value._id){
+      this.tService.updateTarea(form.value).subscribe(
+        res =>{
+          this.getTareas();
+          form.reset();
+        },
+        err =>{
+          console.log(err);
+        }
+      );
+    }
+    else{
+      this.tService.addTarea(form.value).subscribe(
+        res => {
+          this.getTareas();
+          form.reset();
+        },
+        err => {
+          console.log(err);
+        }
+      );
+    }
   }
 
   deleteTarea(id: string){
@@ -50,6 +68,10 @@ export class TareaComponent implements OnInit {
         }
       );
     }
+  }
+
+  editaTarea(tarea: Tarea){
+    this.tService.nuevaTarea = tarea;
   }
 
 }

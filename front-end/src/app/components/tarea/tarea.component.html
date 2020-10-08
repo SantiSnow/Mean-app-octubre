@@ -6,6 +6,7 @@
             <div class="card">
                 <h2>Crear tareas</h2>
                 <form #tareasForm="ngForm" (ngSubmit)="addTarea(tareasForm)">
+                    <input type="hidden" name="_id" [(ngModel)]="tService.nuevaTarea._id">
                     <div class="form-group">
                         <label for="nombre">Nombre</label>
                         <input type="text" name="nombre" placeholder="Ingrese nombre de la tarea" class="form-control" required [(ngModel)]="tService.nuevaTarea.nombre" />
@@ -25,6 +26,7 @@
 
                         <br />
                         <button type="submit" class="btn btn-primary">Enviar</button>
+                        <button type="submit" class="btn btn-secondary" (click)="resetForm(tareasForm)">Limpiar campos</button>
                     </div>
                 </form>
             </div>
@@ -50,7 +52,7 @@
                             <td>{{ i.importancia }}</td>
                             <td>{{ i.completada }}</td>
                             <td>
-                                <button class="btn btn-secondary btn-sm">
+                                <button class="btn btn-secondary btn-sm" (click)="editaTarea(i)">
                                     <i class="material-icons">edit</i>
                                 </button>
                                 <button class="btn btn-danger btn-sm" (click)="deleteTarea(i._id)">
