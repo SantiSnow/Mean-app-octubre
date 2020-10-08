@@ -8,11 +8,22 @@ import { TareasService } from '../../services/tareas.service';
 })
 export class TareaComponent implements OnInit {
 
-  constructor(private tService: TareasService) { }
+  constructor(public tService: TareasService) { }
 
   ngOnInit(): void {
+    this.getTareas();
+  }
+
+  getTareas(){
     console.log(
-      this.tService.getTareas()
+      this.tService.getTareas().subscribe(
+        res => {
+          this.tService.tareasArray = res;
+        },
+        err => {
+          console.log(err);
+        }
+      )
     );
   }
 
