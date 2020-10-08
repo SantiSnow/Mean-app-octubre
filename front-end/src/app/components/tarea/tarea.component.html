@@ -5,19 +5,23 @@
         <div class="col-md-4">
             <div class="card">
                 <h2>Crear tareas</h2>
-                <form class="form-group">
-
+                <form #tareasForm="ngForm" (ngSubmit)="addTarea(tareasForm)" class="form-group">
                     <label for="nombre">Nombre</label>
-                    <input type="text" name="nombre" placeholder="Ingrese nombre de la tarea" class="form-control" required />
+                    <input type="text" name="nombre" placeholder="Ingrese nombre de la tarea" class="form-control" required [(ngModel)]="tService.nuevaTarea.nombre" />
                     <br />
 
                     <label for="descripcion">Descripción</label>
-                    <input type="text" name="descripcion" placeholder="Ingrese descripción de la tarea" class="form-control" required />
+                    <input type="text" name="descripcion" placeholder="Ingrese descripción de la tarea" class="form-control" required [(ngModel)]="tService.nuevaTarea.descripcion" />
                     <br />
 
                     <label for="importancia">Importancia</label>
-                    <input type="text" name="importancia" placeholder="Ingrese Importancia de la tarea" class="form-control" required />
+                    <input type="text" name="importancia" placeholder="Ingrese Importancia de la tarea" class="form-control" required [(ngModel)]="tService.nuevaTarea.importancia" />
                     <br />
+
+                    <label for="completada">Completada:</label>
+                    <input type="text" name="completada" placeholder="True o false" class="form-control" required [(ngModel)]="tService.nuevaTarea.completada" />
+                    <br />
+
                     <br />
                     <button type="submit" class="btn btn-primary">Enviar</button>
                 </form>

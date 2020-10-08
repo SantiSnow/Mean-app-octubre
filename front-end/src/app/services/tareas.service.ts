@@ -9,10 +9,24 @@ export class TareasService {
 
   url = "http://localhost:3000/";
   tareasArray: Tarea[];
+  nuevaTarea: Tarea = {
+    nombre: '',
+    descripcion: '',
+    importancia: '',
+    completada: false
+  };
 
   constructor(private http: HttpClient) { }
 
   getTareas(){
     return this.http.get<Tarea[]>(this.url);
   }
+
+  addTarea(tarea: Tarea){
+    return this.http.post(this.url, tarea);
+  }
+
+  
+
+
 }

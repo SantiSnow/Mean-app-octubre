@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { TareasService } from '../../services/tareas.service';
+
 
 @Component({
   selector: 'app-tarea',
@@ -25,6 +27,18 @@ export class TareaComponent implements OnInit {
         }
       )
     );
+  }
+
+  addTarea(form: NgForm){
+    this.tService.addTarea(form.value).subscribe(
+      res => {
+        this.getTareas();
+        form.reset();
+      },
+      err => {
+        console.log(err)
+      }
+    )
   }
 
 }

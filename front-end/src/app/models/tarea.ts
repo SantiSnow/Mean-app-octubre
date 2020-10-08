@@ -3,7 +3,7 @@ export interface Tarea{
     descripcion: string
     importancia: string
     completada: boolean
-    createdAt: string
-    updatedAt: string
-    _id: string
+    createdAt?: string
+    updatedAt?: string
+    _id?: string
 }
